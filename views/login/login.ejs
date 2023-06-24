@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EVOS</title>
+  <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU" crossorigin="anonymous">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/login.css?v=<%= new Date().getTime() %>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@100;400;700;900&family=Caveat:wght@400;600&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Saira+Stencil+One&display=swap">
+
+</head>
+<body>
+  <div class="login-container">
+    <img src="/assets/img/bg-main.png" alt="메인배경">
+    <div class="login-form">
+      <h2>EVOS</h2>
+      <form>
+        <div class="form-group">
+          <div class="input-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <input type="text" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <div class="input-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <input type="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <div class="login-button">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">
+              <span class="hover-effect">
+                <i class="fas fa-info-circle"></i>
+                EVOS 가입 안내
+              </span>
+            </a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#signupRequestModal">
+              <span class="hover-effect">
+                <i class="fas fa-key"></i>
+                ID 발급 요청
+              </span>
+            </a>
+            <button type="submit" class="btn login-btn mt-4">
+              LOGIN
+            </button>      
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h3>제휴 충전사<img src="/assets/img/flash.png" alt="Logo 1" width="15px"></h3>
+    <ul>
+      <li class="footer-lc"><img src="/assets/img/pluglink_logo.png" alt="Logo 2"></li>
+      <li class="footer-lc"><img src="/assets/img/everon_logo.png" alt="Logo 3"></li>
+      <li><img src="/assets/img/sk_logo.png" alt="Logo 4"></li>
+      <li class="footer-lc"><img src="/assets/img/hanwha_logo.jpg" alt="Logo 5"></li>
+    </ul>
+  </div>
+
+  <!-- 가입 안내 모달 -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title" id="signupModalLabel">EVOS 가입 안내</h5>
+          <div class="text-end">
+            <button type="button" class="btn-close d-block d-md-none" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <!-- 가입 안내 내용 -->
+          <p>1.충전사 및 시공사는 대표번호 <b>1544-3610</b> 으로 전화 주세요.</p>
+          <p>2.영업조직 및 영업자인 경우 몇가지 준비사항이 필요합니다.</p>
+        </div>
+        <div class="modal-footer d-none d-md-block" style="text-align: right;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <!-- 추가 버튼이 필요하다면 여기에 추가할 수 있습니다. -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 회원가입 모달 추가 -->
+  <div class="modal fade" id="signupRequestModal" tabindex="-1" aria-labelledby="signupRequestModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title" id="signupRequestModalLabel">ID 발급 요청</h5>
+          <div class="text-end">
+            <button type="button" class="btn-close d-block d-md-none" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <form id="signupRequestForm">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="privacyPolicyCheck">
+              <label class="form-check-label" for="privacyPolicyCheck">
+                개인정보 처리방침에 동의합니다.
+              </label>
+              <a href="#" data-bs-toggle="collapse" data-bs-target="#privacyPolicyContent" aria-expanded="false" aria-controls="privacyPolicyContent">
+                <i class="fas fa-chevron-down"></i>
+              </a>
+              <div class="collapse" id="privacyPolicyContent" style="max-height: 150px; overflow-y: auto;">
+                <div class="card card-body">
+                  <h6><b>1. 수집 항목</b></h6>
+                  <p>- 이름, 생년월일, 성별, 이메일, 연락처</p>
+
+                  <h6><b>2. 목적</b></h6>
+                  <p>- 회원가입 및 관리, 이용자식별 및 본인 여부 확인,서비스 제공</p>
+
+                  <h6><b>3. 이용 기간</b></h6>
+                  <p>원칙적으로, 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체없이 파기합니다.
+                  단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 아래와 같이 관계법령에서 정한 일정 기간동안 개인정보를 보관할 수 있습니다.<br>
+                  - 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년 (전자상거래등에서의 소비자보호에 관한 법률)</p>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="nameInput" class="form-label">이름</label>
+              <input type="text" class="form-control" id="nameInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="birthInput" class="form-label">생년월일</label>
+              <input type="date" class="form-control" id="birthInput" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">성별</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                  <label class="form-check-label" for="male">남성</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                  <label class="form-check-label" for="female">여성</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">이메일</label>
+              <input type="email" class="form-control" id="emailInput" required>
+            </div>
+            <div class="mb-3">
+              <label for="phoneInput" class="form-label">연락처</label>
+              <input type="tel" class="form-control" id="phoneInput" pattern="^\d{2,3}-\d{3,4}-\d{4}$" required>
+              <small class="form-text text-muted">예: 010-1234-5678</small>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" style="text-align: right;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="submit" form="signupRequestForm" class="btn btn-primary">요청</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
