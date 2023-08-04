@@ -1,0 +1,307 @@
+<!-- DB 상세화면 -->
+<section>
+  <div class="container">
+    <!-- 첫번째 열 -->
+    <form action="/saveData" method="POST"> 
+        <div class="row ">
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">DB넘버</label>
+                <input type="text" class="form-control" id="key" value=<%= data.key %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">이름</label>
+                <input type="text" class="form-control" id="NAME" value=<%= data.NAME %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">DB등록일</label>
+                <input type="text" class="form-control" id="DB_DATE" value=<%= data.DB_DATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">DB구분</label>
+                <input type="text" class="form-control" id="NEW_ADD" value=<%= data.NEW_ADD %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">유입경로</label>
+                <input type="text" class="form-control" id="PATH" value=<%= data.PATH %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">건물종류1</label>
+                <input type="text" class="form-control" id="BD_1" value=<%= data.BD_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">건물종류2</label>
+                <input type="text" class="form-control" id="BD_2" value=<%= data.BD_2 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">건물그룹</label>
+                <input type="text" class="form-control" id="BD_G" value=<%= data.BD_G %>>
+            </div>
+            <div class="col-xxl2 col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">건물이름</label>
+                <input type="text" class="form-control" id="BD_NAME" value=<%= data.BD_NAME %>>
+            </div>
+        </div>
+        <!-- 두분째 열 -->
+        <div class="row mt-3 ">
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">총주차면</label>
+                <input type="text" class="form-control" id="P_LOT" value=<%= data.P_LOT %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">주소1</label>
+                <input type="text" class="form-control" id="ADD_1" value=<%= data.ADD_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">주소2</label>
+                <input type="text" class="form-control" id="ADD_2" value=<%= data.ADD_2 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">상세주소</label>
+                <input type="text" class="form-control" id="ADD_3" value=<%= data.ADD_3 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">담당자1 이름</label>
+                <input type="text" class="form-control" id="BD_PERSON_1" value=<%= data.BD_PERSON_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">담당자1연락처</label>
+                <input type="text" class="form-control" id="BD_PH_1" value=<%= data.BD_PH_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">담당자1이메일</label>
+                <input type="text" class="form-control" id="BD_MAIL_1" value=<%= data.BD_MAIL_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">담당자2 이름</label>
+                <input type="text" class="form-control" id="BD_PERSON_2" value=<%= data.BD_PERSON_2 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">담당자2연락처</label>
+                <input type="text" class="form-control" id="BD_PH_2" value=<%= data.BD_PH_2 %>>
+            </div>
+        </div>
+
+        <!-- 세번째열 -->
+        <div class="row mt-3 ">
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">의무설치<br>전용주차면</label>
+                <input type="text" class="form-control" id="DUTY_PLOT" value=<%= data.DUTY_PLOT %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">의무설치<br>급속충전기</label>
+                <input type="text" class="form-control" id="DUTY_FC" value=<%= data.DUTY_FC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">의무설치<br>완속충전기</label>
+                <input type="text" class="form-control" id="DUTY_SC" value=<%= data.DUTY_SC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">기설치<br>전용주차면</label>
+                <input type="text" class="form-control" id="EXIST_PLOT" value=<%= data.EXIST_PLOT %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">기설치<br>급속충전기</label>
+                <input type="text" class="form-control" id="EXIST_FC" value=<%= data.EXIST_FC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">기설치<br>완속충전기</label>
+                <input type="text" class="form-control" id="EXIST_SC" value=<%= data.EXIST_SC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">실사요청<br>전용주차면</label>
+                <input type="text" class="form-control" id="APPLY_PLOT" value=<%= data.APPLY_PLOT %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">실사요청<br>급속충전기</label>
+                <input type="text" class="form-control" id="APPLY_FC" value=<%= data.APPLY_FC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">실사요청<br>완속충전기</label>
+                <input type="text" class="form-control" id="APPLY_SC" value=<%= data.APPLY_SC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">교체신청<br>급속충전기</label>
+                <input type="text" class="form-control" id="CHGE_FC" value=<%= data.CHGE_FC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">교체신청<br>완속충전기</label>
+                <input type="text" class="form-control" id="CHGE_SC" value=<%= data.CHGE_SC %>>
+            </div>
+        </div>
+
+        <!-- 네번째 열 메모-->
+        <div class="row mt-3 ">
+            <div class="col-xxl form-group">
+                <label for="input1">현장실사요청 메모</label>
+                <input type="text" class="form-control py-3" id="APPLY_MEMO" value=<%= data.APPLY_MEMO %>>
+            </div>
+        </div>
+
+
+        <!-- 다섯번째 열-->
+        <div class="row mt-3 ">
+            <div class="col-xxl col-lg-3 col-md-6 col-4 form-group">
+                <label for="input1">현장실사 신청일</label>
+                <input type="text" class="form-control" id="APPLY_DATE" value=<%= data.APPLY_DATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-4 form-group">
+                <label for="input1">실사 담당사</label>
+                <input type="text" class="form-control" id="APPLY_CP" value=<%= data.APPLY_CP %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-4 form-group">
+                <label for="input1">실사 담당자</label>
+                <input type="text" class="form-control" id="APPLY_NAME" value=<%= data.APPLY_NAME %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-4 form-group">
+                <label for="input1">현장실사 상태</label>
+                <input type="text" class="form-control" id="APPLY_STATE" value=<%= data.APPLY_STATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-4 form-group">
+                <label for="input1">실사 예정일</label>
+                <input type="text" class="form-control" id="APPLY_DUE_DAY" value=<%= data.APPLY_DUE_DAY %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-4 form-group">
+                <label for="input1">실사완료 경과일</label>
+                <input type="text" class="form-control" id="APPLY_TERM" value=<%= data.APPLY_TERM %>>
+            </div>
+        </div>
+
+        <!-- 6번째 열-->
+        <div class="row mt-3 ">
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">1차 실사 결과</label>
+                <input type="text" class="form-control" id="APPLY_RESULT_1" value=<%= data.APPLY_RESULT_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">추가비용</label>
+                <input type="text" class="form-control" id="APPLY_COST_1" value=<%= data.ADD_COST_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">비용처리안</label>
+                <input type="text" class="form-control" id="COST_WAY_1" value=<%= data.COST_WAY_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">최종비용</label>
+                <input type="text" class="form-control" id="COST_RESULT_1" value=<%= data.COST_RESULT_1 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">2차 실사 결과</label>
+                <input type="text" class="form-control" id="APPLY_RESULT_2" value=<%= data.APPLY_RESULT_2 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">추가비용</label>
+                <input type="text" class="form-control" id="ADD_COST_2" value=<%= data.ADD_COST_2 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">비용처리안</label>
+                <input type="text" class="form-control" id="COST_WAY_2" value=<%= data.COST_WAY_2 %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">최종비용</label>
+                <input type="text" class="form-control" id="COST_RESULT_2" value=<%= data.COST_RESULT_2 %>>
+            </div>
+        </div>
+
+        <!-- 7번째 열 -->
+        <div class="row mt-3 ">
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">충전사업자</label>
+                <input type="text" class="form-control" id="CPO" value=<%= data.CPO %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약진행일</label>
+                <input type="text" class="form-control" id="CONST_START_DAY" value=<%= data.CONT_START_DAY %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약방법</label>
+                <input type="text" class="form-control" id="CONT_WAY" value=<%= data.CONT_WAY %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약진행상태</label>
+                <input type="text" class="form-control" id="CONT_STATE" value=<%= data.CONT_STATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약추가사항</label>
+                <input type="text" class="form-control" id="CONT_MEMO" value=<%= data.CONT_MEMO %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약예정일</label>
+                <input type="text" class="form-control" id="CONT_DUE_DAY" value=<%= data.CONT_DUE_DAY %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약일자</label>
+                <input type="text" class="form-control" id="CONT_DATE" value=<%= data.CONT_DATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약경과일</label>
+                <input type="text" class="form-control" id="CONT_TERM" value=<%= data.CONT_TERM %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약 주차면</label>
+                <input type="text" class="form-control" id="CONT_PLOT" value=<%= data.CONT_PLOT %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약 급속대수</label>
+                <input type="text" class="form-control" id="CONT_FC" value=<%= data.CONT_FC %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">계약 완속대수</label>
+                <input type="text" class="form-control" id="CONT_SC" value=<%= data.CONT_SC %>>
+            </div>
+        </div>
+
+        <!-- 8번째 열-->
+        <div class="row mt-3 ">
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">시공회사</label>
+                <input type="text" class="form-control" id="EGR_CP" value=<%= data.EGR_CP %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">시공담당자</label>
+                <input type="text" class="form-control" id="EGR_NAME" value=<%= data.EGR_NAME %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">담당 연락처</label>
+                <input type="text" class="form-control" id="EG_NAME_PH" value=<%= data.EGR_NAME_PH %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">시공 진행상태</label>
+                <input type="text" class="form-control" id="EGR_STATE" value=<%= data.EGR_STATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">시공 예정일</label>
+                <input type="text" class="form-control" id="EGR_DUE_DAY" value=<%= data.EGR_DUE_DAY %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">시공 완료일자</label>
+                <input type="text" class="form-control" id="EGR_END_DATE" value=<%= data.EGR_END_DATE %>>
+            </div>
+            <div class="col-xxl col-lg-3 col-md-6 col-3 form-group">
+                <label for="input1">시공 경과일</label>
+                <input type="text" class="form-control" id="EGR_TERM" value=<%= data.EGR_TERM %>>
+            </div>
+        </div>
+
+        <!-- 9번째 열 메모-->
+        <!-- db histroy 보여줌 user가 수정 및 등록한 내역 리스트로 보여주기  id, 등록일 or 수정일 표시 
+            DB원장 key값과 title명 컬렉션 따로 만드는것도 좋을듯? 필요할때 한글명을 써야되기 떄문에
+        -->
+        <div class="row mt-3 ">
+            <div class="col-xxl form-group">
+                <label for="input1">DB이력</label>
+                <input type="text" class="form-control py-3" id="input1" value="user1 : 수정함">
+            </div>
+        </div>
+
+        <!--button -->
+        <div class="col-xxl d-flex justify-content-end">
+            <div class="p-2 responsive_btn">
+                <a href="/dbList" class="btn btn-primary">목록</a>
+            </div>
+            <div class="p-2 responsive_btn">
+                <!-- <button type="submit" class="btn btn-primary">저장</button> -->
+            </div>
+        </div>
+    </form>    
+</div>
+</section>

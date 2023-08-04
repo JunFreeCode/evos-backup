@@ -1,0 +1,305 @@
+<!--DB등록화면-->
+<section>
+    <div class="container">
+        <!-- DB등록 -->
+        <h5 class="row-divider"><i class="fas fa-charging-station custom-icon"></i>DB등록</h5>
+
+        <form id="dbForm" action="/api/dbSaveData" method="POST">
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-lg-1 col-md-4 col-4 form-group">
+                        <label for="input1">DB구분</label>
+                        <select class="form-select form-select-sm" name="NEW_ADD" required>
+                            <option value="" <%= data?.NEW_ADD ?? "" === "" ? "selected" : "" %>>-선택-</option>
+                            <option value="신규" <%= data?.NEW_ADD ?? "" === "신규" ? "selected" : "" %>>신규</option>
+                            <option value="추가" <%= data?.NEW_ADD ?? "" === "추가" ? "selected" : "" %>>추가</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-4 form-group">
+                        <label for="input1">유입경로</label>
+                        <select class="form-select form-select-sm" name="PATH" required>
+                            <option value="" <%= data?.PATH ?? "" === "" ? "selected" : "" %>>-선택-</option>
+                            <option value="개척" <%= data?.PATH?? "" === "개척" ? "selected" : "" %>>개척</option>
+                            <option value="소개" <%= data?.PATH?? "" === "소개" ? "selected" : "" %>>소개</option>
+                            <option value="EV123" <%= data?.PATH?? "" === "EV123" ? "selected" : "" %>>EV123</option>
+                            <option value="본사접수" <%= data?.PATH?? "" === "본사접수" ? "selected" : "" %>>본사접수</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-4 form-group">
+                        <label for="input1">건물종류1</label>
+                        <select class="form-select form-select-sm" name="BD_1" id="sbx_bd1" required>
+                            <option value="" <%= data?.BD_1?? "" === "" ? "selected" : "" %>>-선택-</option>
+                            <option value="주거시설" <%= data?.BD_1?? "" === "주거시설" ? "selected" : "" %>>주거시설</option>
+                            <option value="상업시설" <%= data?.BD_1?? "" === "상업시설" ? "selected" : "" %>>상업시설</option>
+                            <option value="공공시설" <%= data?.BD_1?? "" === "공공시설" ? "selected" : "" %>>공공시설</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-4 form-group">
+                        <label for="input1">건물종류2</label>
+                        <select class="form-select form-select-sm" name="BD_2" id="sbx_bd2" required>
+                            <% if (data.BD_2 !== "") { %>
+                                <option value="<%= data.BD_2 %>" selected><%= data.BD_2 %></option>
+                            <% } else { %>
+                                <option value="" selected>-선택-</option>
+                                <option value="1"></option>
+                                <option value="2"></option>
+                                <option value="3"></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-4 form-group">
+                        <label for="input1">기축/신축</label>
+                        <select class="form-select form-select-sm" name="NEW_CONST" value=<%= data.NEW_CONST %> required>
+                            <option value="" <%= data?.NEW_CONST?? "" === "" ? "selected" : "" %>>-선택-</option>
+                            <option value="기축" <%= data?.NEW_CONST?? "" === "기축" ? "selected" : "" %>>기축</option>
+                            <option value="신축" <%= data?.NEW_CONST?? "" === "신축" ? "selected" : "" %>>신축</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-4 form-group">
+                        <label for="input1">건물그룹</label>
+                        <select class="form-select form-select-sm" name="BD_G" value=<%= data.BD_G %> required>
+                            <option value="N" <%= data?.BD_G?? "" === "N" ? "selected" : "" %>>N</option>
+                            <option value="Y" <%= data?.BD_G?? "" === "Y" ? "selected" : "" %>>Y</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-4 form-group">
+                        <label for="input1">건물이름</label>
+                        <input type="text" class="form-control" name="BD_NAME" value="<%= data.BD_NAME ?? '' %>" required>
+                    </div>
+                </div>
+            </div>
+            <!-- 2번째 열 -->
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group">
+                        <label for="input1">주소1</label>
+                        <input type="text" class="form-control readonly-bg" name="ADD_1" id="add_1" value="<%= data.ADD_1 ?? '' %>" readonly>
+                    </div>
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group">
+                        <label for="input1">주소2</label>
+                        <input type="text" class="form-control readonly-bg" name="ADD_2" id="add_2" value="<%= data.ADD_2 ?? '' %>" readonly>
+                    </div>
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group">
+                        <label for="input1">상세주소</label>
+                        <input type="text" class="form-control readonly-bg" name="ADD_3" id="add_3" value="<%= data.ADD_3 ?? '' %>" readonly>
+                    </div>
+                    <!-- 주소찾기 -->
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group btn-wrapper">
+                        <button type="button" class="btn btn-primary btn-sm mt-4"
+                            onclick="searchAddress()">주소찾기</button>
+                    </div>
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group">
+                        <label for="input1">담당자1이름</label>
+                        <input type="text" class="form-control" name="BD_PERSON_1" value="<%= data.BD_PERSON_1 ?? '' %>" required>
+                    </div>
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group">
+                        <label for="input1">담당자1연락처</label>
+                        <input type="text" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" class="form-control" name="BD_PH_1" value="<%= data.BD_PH_1 ?? '' %>" title="핸드폰 번호를 xxx-xxxx-xxxx 형식으로 입력하세요." required>
+                    </div>
+                    <div class="col-xxl col-lg-3 col-md-6 col-6 form-group">
+                        <label for="input1">담당자1이메일</label>
+                        <input type="email" pattern="^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$"  class="form-control" name="BD_EMAIN_1"  value="<%= data.BD_EMAIN_1 ?? '' %>" title="올바른 이메일 주소 형식으로 입력하세요." required>
+                    </div>
+                </div>
+            </div>
+            <!-- DB등록 form 저장 버튼 -->
+            <div>
+                <div class="col-lg d-flex justify-content-end">
+                    <div class="p-2">
+                        <!-- <button type="submit" class="btn btn-primary" id="dbSaveBtn">DB등록</button> -->
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- 현장실사신청 -->
+        <h5 class="row-divider"><i class="fas fa-charging-station custom-icon"></i>현장실사신청</h5>
+        <form id="surveyForm" action="/api/surveySaveData" method="POST">
+            <input type="hidden" id="dbNo" name="dbNo" value="<%= data.key ?? '' %>">
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-xxl1 col-lg-2 col-md-2 col-4 form-group">
+                        <label for="input1">총주차면</label>
+                        <input type="text" class="form-control" name="P_LOT" oninput="calculatePercentages(this)" required>
+                    </div>
+                    <div class="col-xxl11 col-lg-10 col-md-10 col-12 table-responsive"
+                        style="max-height: 400px; overflow-y: auto;">
+                        <table class="table table-bordered text-center table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col" rowspan="2" class="align-middle">구분</th>
+                                    <th scope="col" colspan="2">의무설치</th>
+                                    <th scope="col" rowspan="2" class="align-middle">기설치 충전기</th>
+                                    <th scope="col" rowspan="2" class="align-middle">교체요청 수량</th>
+                                    <th scope="col" rowspan="2" class="align-middle">실사요청 대수</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">5%</th>
+                                    <th scope="col">2%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">전용주차면</th>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="DUTY_PLOT_5" id="DUTY_PLOT_5" oninput="handleNumberInput(this)" value=<%= data.DUTY_PLOT_5 %> ></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="DUTY_PLOT_2" id="DUTY_PLOT_2" oninput="handleNumberInput(this)" value=<%= data.DUTY_PLOT_2 %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="EXIST_PLOT" id="EXIST_PLOT" oninput="handleNumberInput(this)" value=<%= data.EXIST_PLOT %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="CHG_PLOT" id="CHG_PLOT" oninput="handleNumberInput(this)" value=<%= data.CHG_PLOT %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="APPLY_PLOT"  id="APPLY_PLOT" oninput="handleNumberInput(this)" value=<%= data.APPLY_PLOT %>></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">완속충전기</th>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="SC_5" id="SC_5" oninput="handleNumberInput(this)" value=<%= data.SC_5 %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="SC_2" id="SC_2" oninput="handleNumberInput(this)" value=<%= data.SC_2 %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="EXIST_SC" id="EXIST_SC" oninput="handleNumberInput(this)" value=<%= data.EXIST_SC %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="CHG_SC" id="CHG_SC" oninput="handleNumberInput(this)" value=<%= data.CHG_SC %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="APPLY_SC" id="APPLY_SC" oninput="handleNumberInput(this)" value=<%= data.APPLY_SC %>></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">급속충전기</th>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="FC_5" id="FC_5" oninput="handleNumberInput(this)" value=<%= data.FC_5 %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="FC_2" id="FC_2" oninput="handleNumberInput(this)" value=<%= data.FC_2 %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="EXIST_FC" id="EXIST_FC" oninput="handleNumberInput(this)" value=<%= data.EXIST_FC %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="CHG_FC" id="CHG_FC" oninput="handleNumberInput(this)" value=<%= data.CHG_FC %>></td>
+                                    <td><input type="text" class="form-control form-control-sm text-end" name="APPLY_FC" id="APPLY_FC" oninput="handleNumberInput(this)" value=<%= data.APPLY_FC %>></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="table-light">
+                                <th scope="row">합계</th>
+                                <td><input type="text" class="form-control form-control-sm text-end readonly-bg" name="TOTAL_5" id="TOTAL_5" value=<%= data.TOTAL_5 %> readonly></td>
+                                <td><input type="text" class="form-control form-control-sm text-end readonly-bg" name="TOTAL_2" id="TOTAL_2" value=<%= data.TOTAL_2 %> readonly></td>
+                                <td><input type="text" class="form-control form-control-sm text-end readonly-bg" name="TOTAL_EXIST" id="TOTAL_EXIST" value=<%= data.TOTAL_EXIST %> readonly></td>
+                                <td><input type="text" class="form-control form-control-sm text-end readonly-bg" name="TOTAL_CHG" id="TOTAL_CHG" value=<%= data.TOTAL_CHG %> readonly></td>
+                                <td><input type="text" class="form-control form-control-sm text-end readonly-bg" name="TOTAL_APPLY" id="TOTAL_APPLY" value=<%= data.TOTAL_APPLY %> readonly></td>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-md-2 col-12 form-group">
+                        <label for="input1">설치 희망장소</label>
+                    </div>
+                    <div class="col-md-10 col-12" name="instLoc">
+                        <% const instLocValues = data.INST_LOC || []; %>
+                        <% const instLocOptions = ['지상주차장', '지하주차장', '지상/지하 분할']; %>
+
+                        <% instLocOptions.forEach((option) => { %>
+                            <div class="form-check form-check2">
+                            <input class="form-check-input" type="checkbox" name="instLoc[]" value="<%= option %>"
+                                <% if (instLocValues.includes(option)) { %>checked<% } %>>
+                            <label class="form-check-label" for="instLoc_<%= instLocOptions.indexOf(option) + 1 %>"><%= option %></label>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-md-2 col-12 form-group">
+                        <label for="input1">전력공급방식</label>
+                    </div>
+                    <div class="col-md-10 col-12" name="supplyType">
+                        <% const supplyTypeValues = data.SUPPLY_TYPE || []; %>
+                        <% const supplyTypeOptions = ['모자분리', '한전신규공급']; %>
+
+                        <% supplyTypeOptions.forEach((option) => { %>
+                            <div class="form-check form-check2">
+                            <input class="form-check-input" type="checkbox" name="supplyType[]" value="<%= option %>"
+                                <% if (supplyTypeValues.includes(option)) { %>checked<% } %>>
+                            <label class="form-check-label" for="supplyType_<%= supplyTypeOptions.indexOf(option) + 1 %>"><%= option %></label>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-md-2 col-12 form-group">
+                        <label for="input1">실사희망일</label>
+                    </div>
+                    <div class="col-md-10 col-12" name="surveyDate">
+                        <% const surveyDateValue = data.SURVEY_DATE || ''; %>
+                        <% const surveyDateOptions = ['가급적 빨리', '다음주', '특정일(날짜선택)', '기타']; %>
+
+                        <% surveyDateOptions.forEach((option) => { %>
+                            <div class="form-check form-check2">
+                            <input class="form-check-input" type="radio" name="surveyDate" id="surveyDate_<%= surveyDateOptions.indexOf(option) + 1 %>"
+                                value="<%= option %>" <% if (surveyDateValue === option) { %>checked<% } %>
+                                <% if (option === '특정일(날짜선택)') { %> onclick="handleDateInput(this)" <% } %>>
+                            <label class="form-check-label" for="surveyDate_<%= surveyDateOptions.indexOf(option) + 1 %>"><%= option %></label>
+                            <% if (option === '특정일(날짜선택)') { %>
+                                <input type="text" class="form-control form-control-sm date-picker-input" name="dateInput" id="dateInput" style="float: right;"
+                                <% if (surveyDateValue === option) { %> value="<%= data.DATE_INPUT %>" <% } %> disabled>
+                            <% } %>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-md-2 col-12 form-group">
+                        <label for="input1">영업자 실사동행</label>
+                    </div>
+                    <div class="col-md-10 col-12" name="companionYn">
+                        <% const companionYnValue = data.COMPANION_YN || ''; %>
+                        <% const companionYnOptions = ['동행', '비동행']; %>
+
+                        <% companionYnOptions.forEach((option) => { %>
+                            <div class="form-check form-check2">
+                            <input class="form-check-input" type="radio" name="companionYn" value="<%= option %>" <% if (companionYnValue === option) { %>checked<% } %>>
+                            <label class="form-check-label" for="companionYn_<%= companionYnOptions.indexOf(option) + 1 %>"><%= option %></label>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-md-2 col-12 form-group">
+                        <label for="input1">충전사업자 선택</label>
+                    </div>
+                    <div class="col-md-10 col-12" name="CPO" id="CPO">
+                        <% const cpoValues = data.CPO || []; %>
+                        <% const cpoOptions = ['전체사업자 비교', '한화모티브', '에버온', '실세계스파로스', '플러그링크', '나이스차저', '차지비', 'EVC코리아', '비공용']; %>
+                      
+                        <% cpoOptions.forEach((option) => { %>
+                          <div class="form-check form-check2">
+                            <input class="form-check-input" type="checkbox" name="CPO[]" value="<%= option %>" <% if (cpoValues.includes(option)) { %>checked<% } %>>
+                            <label class="form-check-label" for="CPO_<%= cpoOptions.indexOf(option) + 1 %>"><%= option %></label>
+                          </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-divider">
+                <div class="row mb-2">
+                    <div class="col-md-2 col-12 form-group">
+                        <label for="input1">실사요청 메모</label>
+                    </div>
+                    <div class="col-md-10 col-12">
+                        <textarea class="form-control" rows="3" name="applyMemo" ><%= data.APPLY_MEMO %></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg d-flex justify-content-end">
+                <div class="p-2 responsive_btn">
+                    <a href="/surveyList" class="btn btn-primary">목록</a>
+                </div>
+                <div class="p-2">
+                    <button type="button" class="btn btn-primary" id="surveySaveBtn">실사 재등록</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="js/dbScript.js"></script>
+</section>

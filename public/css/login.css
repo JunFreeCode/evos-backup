@@ -54,7 +54,7 @@ img{
   color: #808080;
 }
 
-.login-form input[type="text"],
+.login-form input[type="email"],
 .login-form input[type="password"] {
   width: 100%;
   padding: 10px;
@@ -64,7 +64,7 @@ img{
   padding-left: 35px;
 }
 
-.login-form input[type="text"]::placeholder,
+.login-form input[type="email"]::placeholder,
 .login-form input[type="password"]::placeholder {
   color: #808080;
 }
@@ -113,14 +113,14 @@ img{
   text-align: center;
 }
 
-.footer h3,
-ul {
+.footer h3, ul {
   display: inline;
   line-height: 50px;
   letter-spacing: 0.2em;
   font-style: oblique;
   color: #fff; /* 텍스트 색상 변경 */
   font-weight: bold; /* 텍스트 강조 */
+  font-size: 18px;
 }
 
 .footer ul li {
