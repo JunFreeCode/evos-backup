@@ -18,7 +18,6 @@ const getData =  async (req, res) => {
         res.json({data});
         
     } catch (error) {
-        console.log('문서 조회 오류: ', error);
         res.status(500).json({ error: '문서 조회 오류 발생' });
     }
 };
@@ -46,7 +45,7 @@ async function getDataByKey(key) {
 //DB저장
 async function dbSaveData(req, res){
   try{
-    const {NEW_ADD, PATH, BD_1, BD_2, NEW_CONST, BD_GROUP, BD_NAME, ADD_1, ADD_2, ADD_3, BD_PERSON_1, BD_PH_1, BD_EMAIN_1}  = req.body;
+    const {NEW_ADD, PATH, BD_1, BD_2, NEW_CONST, BD_NAME, ADD_1, ADD_2, ADD_3, BD_PERSON_1, BD_PH_1, BD_EMAIN_1}  = req.body;
 
     //파이어스토어에서 년도별 시퀀스값 구하기
     const currentYear = new Date().getFullYear().toString();
@@ -54,6 +53,7 @@ async function dbSaveData(req, res){
     const contractSeqDocRef = doc(contractSeqCollectionRef,currentYear);
     const contractSeqDocSnapshot = await getDoc(contractSeqDocRef);
     let newContractMaxSeq = 1;
+
     if (contractSeqDocSnapshot.exists()) {
       // 해당 년도의 시퀀스 문서가 존재하는 경우, 현재 시퀀스 값을 가져옵니다.
       const currentContractMaxSeq = contractSeqDocSnapshot.data().contract_max_seq;
@@ -62,29 +62,28 @@ async function dbSaveData(req, res){
       // 해당 년도의 시퀀스 문서가 없는 경우, 새로운 시퀀스 문서를 생성합니다.
       await setDoc(contractSeqDocRef, { contract_max_seq: 'D' + currentYear.slice(-2) + '000001' });
     }
-
      // 현재 날짜 생성 (2023-07-30 형식으로 변환)
      const currentDate = new Date();
      const year = currentDate.getFullYear();
      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
      const day = String(currentDate.getDate()).padStart(2, '0');
      const formattedDate = `${year}-${month}-${day}`;
-
     //contractLedger 컬렉션에 데이터 추가
     const collectionRef = collection(db, 'contractLedger');
     await addDoc(collectionRef,{
       //필드값
-      NEW_ADD, PATH, BD_1, BD_2, NEW_CONST, BD_GROUP, BD_NAME, ADD_1, ADD_2, ADD_3, BD_PERSON_1, BD_PH_1, BD_EMAIN_1,
+      NEW_ADD, PATH, BD_1, BD_2, NEW_CONST, BD_NAME, ADD_1, ADD_2, ADD_3, BD_PERSON_1, BD_PH_1, BD_EMAIN_1,
       key :  'D' + addLeadingZeros(newContractMaxSeq, 6), // 증가된 시퀀스 값을 추가
       DB_DATE: formattedDate, // 현재 날짜를 2023-07-30 형식으로 저장
+      DB_STATUS:'DB저장'
     });
 
     // contract_seq 컬렉션의 contract_max_seq 값을 업데이트합니다.
     await setDoc(contractSeqDocRef, { contract_max_seq: 'D' + addLeadingZeros(newContractMaxSeq, 6) });
-
     // 데이터 저장 성공 시 응답
     res.status(200).json({ success: true, message: '데이터 저장 성공' });
   }catch(error){
+    console.error("Firestore 데이터 저장 오류:", error);
     // 데이터 저장 실패 시 응답
     res.status(500).json({ success: false, message: '데이터 저장 오류 발생' });
   }
@@ -120,7 +119,6 @@ const getfieldWorkUnData =  async (req, res) => {
       res.json({data});
       
   } catch (error) {
-      console.log('문서 조회 오류: ', error);
       res.status(500).json({ error: '문서 조회 오류 발생' });
   }
 };
@@ -129,7 +127,6 @@ const getfieldWorkUnData =  async (req, res) => {
 //실사신청 등록
 async function surveySaveData(req, res){
   try {
-
     const INST_LOC = req.body['instLoc[]'];
     const SUPPLY_TYPE = req.body['supplyType[]'];
     const CPO = req.body['CPO[]'];
@@ -153,15 +150,41 @@ async function surveySaveData(req, res){
      //일치하는 문서가 존재하는 경우 업데이트
      if (!querySnapshot.empty){
       const docToUpdate = querySnapshot.docs[0];
-      await setDoc(docToUpdate.ref, {APPLY_FC, APPLY_PLOT, APPLY_SC, CHG_FC, CHG_PLOT, CHG_SC, CPO, DUTY_PLOT_2, DUTY_PLOT_5, EXIST_FC, EXIST_PLOT, EXIST_SC, FC_2,
-        FC_5,P_LOT,SC_2,SC_5,TOTAL_2,TOTAL_5,TOTAL_APPLY,TOTAL_CHG,TOTAL_EXIST,APPLY_MEMO,COMPAINO_YN,INST_LOC, SUPPLY_TYPE,SURVEY_DATE,
-        APPLY_DATE:formattedDate,
-        APPLY_STATE:'실사요청',
-        DB_STATUS:'실사요청',
-        DATE_INPUT,
-        }, { merge: true });
-      console.log("기존 데이터가 업데이트되었습니다. 문서 ID:", docToUpdate.id);
-
+      // 필드값이 undefined인 경우 빈값으로 대체
+      const data = {
+        APPLY_FC: APPLY_FC || '',
+        APPLY_PLOT: APPLY_PLOT || '',
+        APPLY_SC: APPLY_SC || '',
+        CHG_FC: CHG_FC || '',
+        CHG_PLOT: CHG_PLOT || '',
+        CHG_SC: CHG_SC || '',
+        CPO: CPO || '',
+        DUTY_PLOT_2: DUTY_PLOT_2 || '',
+        DUTY_PLOT_5: DUTY_PLOT_5 || '',
+        EXIST_FC: EXIST_FC || '',
+        EXIST_PLOT: EXIST_PLOT || '',
+        EXIST_SC: EXIST_SC || '',
+        FC_2: FC_2 || '',
+        FC_5: FC_5 || '',
+        P_LOT: P_LOT || '',
+        SC_2: SC_2 || '',
+        SC_5: SC_5 || '',
+        TOTAL_2: TOTAL_2 || '',
+        TOTAL_5: TOTAL_5 || '',
+        TOTAL_APPLY: TOTAL_APPLY || '',
+        TOTAL_CHG: TOTAL_CHG || '',
+        TOTAL_EXIST: TOTAL_EXIST || '',
+        APPLY_MEMO: APPLY_MEMO || '',
+        COMPAINO_YN: COMPAINO_YN || '',
+        INST_LOC: INST_LOC || '',
+        SUPPLY_TYPE: SUPPLY_TYPE || '',
+        SURVEY_DATE: SURVEY_DATE || '',
+        APPLY_DATE: formattedDate,
+        APPLY_STATE: '실사요청',
+        DB_STATUS: '실사요청',
+        DATE_INPUT: DATE_INPUT || '',
+      };
+      await setDoc(docToUpdate.ref, data, { merge: true });
       // 데이터 저장 성공 시 응답
       res.status(200).json({ success: true, message: '데이터 저장 성공' });
      }

@@ -51,10 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     //현장실사신청 이벤트 추가
-    const surveySaveBtn = document.getElementById('surveySaveBtn');
-    if(surveySaveBtn){
+    const surveySave = document.getElementById('surveySaveBtn');
+    if(surveySave){
       document.getElementById("surveySaveBtn").addEventListener("click", surveySaveBtn);
     }
+    
 
     //실사신청 버튼 조건에 따라 disabled
     const dbNo = $('#dbNo').val();
@@ -77,16 +78,18 @@ async function dbSave(event) {
     const form = document.getElementById('dbForm');
 
     // 폼 유효성 검사
-    if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-    }
+    // if (!form.checkValidity()) {
+    //     form.reportValidity();
+    //     return;
+    // }
 
     const formData = new FormData(form);
     const data = {};
       formData.forEach((value, key) => {
         data[key] = value;
       });
+
+    console.log(data);
 
     fetch("/api/dbSaveData", {
       method: "POST",

@@ -120,7 +120,7 @@
                 <div class="row mb-2">
                     <div class="col-xxl1 col-lg-2 col-md-2 col-4 form-group">
                         <label for="input1">총주차면</label>
-                        <input type="text" class="form-control" name="P_LOT" oninput="calculatePercentages(this)" required>
+                        <input type="text" class="form-control" name="P_LOT" id="P_LOT" oninput="calculatePercentages(this)"value="<%= data.P_LOT ?? '' %>"  required>
                     </div>
                     <div class="col-xxl11 col-lg-10 col-md-10 col-12 table-responsive"
                         style="max-height: 400px; overflow-y: auto;">
